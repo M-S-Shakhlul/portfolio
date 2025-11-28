@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production
+build/
+dist/
+.next/
+out/
+
+# Misc
+.DS_Store
+*.pem
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Debug
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode-server/
+.vscode-server-insiders/
+
+# OS
+Thumbs.db
+.directory
+
+# Testing
+coverage/
+.nyc_output/
+
+# Turbo
+.turbo/
