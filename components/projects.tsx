@@ -15,7 +15,10 @@ const projects = [
     role: "Back-End & Front-End",
     images: ["/images/projects/devmatch-1.jpg", "/images/projects/devmatch-2.jpg", "/images/projects/devmatch-3.jpg"],
     links: {
-      github: "#",
+      github: [
+        { label: "Frontend", url: "https://github.com/M-S-Shakhlul/DevMatch-Front.git" },
+        { label: "Backend", url: "https://github.com/M-S-Shakhlul/DevMatch-back.git" },
+      ],
     },
   },
   {
@@ -30,7 +33,7 @@ const projects = [
       "/images/projects/job-board-3.jpg",
     ],
     links: {
-      github: "#",
+      github: "https://github.com/M-S-Shakhlul/vue-laravel-project.git",
     },
   },
   {
@@ -54,7 +57,10 @@ const projects = [
       "/images/projects/ecommerce-3.jpg",
     ],
     links: {
-      github: "#",
+      github: [
+        { label: "Angular App", url: "https://github.com/M-S-Shakhlul/Angular-Ecommerce.git" },
+        { label: "Node API", url: "https://github.com/M-S-Shakhlul/Ecommerce-NodeJs.git" },
+      ],
     },
   },
   {
@@ -65,7 +71,7 @@ const projects = [
     role: "Frontend",
     images: ["/images/projects/amazon-1.png", "/images/projects/amazon-2.png"],
     links: {
-      github: "#",
+      github: "https://github.com/M-S-Shakhlul/amazonclone.git",
     },
   },
   {
@@ -80,7 +86,7 @@ const projects = [
       "/images/projects/cafeteria-3.jpg",
     ],
     links: {
-      github: "#",
+      github: "https://github.com/M-S-Shakhlul/Php-Cafeteria.git",
     },
   },
 ]
@@ -211,20 +217,40 @@ export function Projects() {
                   </p>
                 </div>
                 {project.links && (
-                  <div className="flex gap-2 mt-4">
+                  <div className="flex gap-2 mt-4 flex-wrap">
+                    {/* Render GitHub links */}
                     {project.links.github && (
-                      <Button
-                        asChild
-                        variant="outline"
-                        size="sm"
-                        className="gap-2 bg-transparent hover:bg-accent/10 hover:border-accent hover:scale-105 transition-all duration-300"
-                      >
-                        <a href={project.links.github} target="_blank" rel="noopener noreferrer">
-                          <Github className="h-4 w-4" />
-                          Code
-                        </a>
-                      </Button>
+                      Array.isArray(project.links.github) ? (
+                        project.links.github.map((link, i) => (
+                          <Button
+                            key={i}
+                            asChild
+                            variant="outline"
+                            size="sm"
+                            className="gap-2 bg-transparent hover:bg-accent/10 hover:border-accent hover:scale-105 transition-all duration-300"
+                          >
+                            <a href={link.url} target="_blank" rel="noopener noreferrer">
+                              <Github className="h-4 w-4" />
+                              {link.label}
+                            </a>
+                          </Button>
+                        ))
+                      ) : (
+                        <Button
+                          asChild
+                          variant="outline"
+                          size="sm"
+                          className="gap-2 bg-transparent hover:bg-accent/10 hover:border-accent hover:scale-105 transition-all duration-300"
+                        >
+                          <a href={project.links.github} target="_blank" rel="noopener noreferrer">
+                            <Github className="h-4 w-4" />
+                            Code
+                          </a>
+                        </Button>
+                      )
                     )}
+                    
+                    {/* Render Demo link if it exists */}
                     {project.links.demo && (
                       <Button
                         asChild
